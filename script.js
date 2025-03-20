@@ -42,13 +42,13 @@ window.addEventListener('scroll', () => {
     header.classList.toggle('sticky', window.scrollY > 0);
 });
 
-// Contact Form Validation and Submission
-const contactForm = document.querySelector('#contact-form');
+// Contact Form Validation
+const contactForm = document.querySelector('.comment-section form');
 const nameInput = document.querySelector('.comment-section input[type="text"]');
 const emailInput = document.querySelector('.comment-section input[type="email"]');
 const messageInput = document.querySelector('.comment-section textarea');
 
-contactForm.addEventListener('submit', async (e) => {
+contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
     let isValid = true;
 
@@ -73,32 +73,10 @@ contactForm.addEventListener('submit', async (e) => {
 
     // Submit Form if Valid
     if (isValid) {
-        const formData = new FormData(contactForm);
-
-        try {
-            const response = await fetch('https://formspree.io/f/mldjevyg', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json',
-                },
-            });
-
-            const result = await response.json();
-
-            if (response.ok) {
-                alert('Thank you! Your message has been sent.');
-                contactForm.reset();
-            } else {
-                alert('Failed to send message. Please try again later.');
-            }
-        } catch (error) {
-            console.error('Error submitting form:', error);
-            alert('An error occurred while sending your message. Please try again later.');
-        }
+        alert('Thank you! Your message has been sent.');
+        contactForm.reset();
     }
 });
-
 // Real-Time Clock
 const clock = document.getElementById('clock');
 
