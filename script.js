@@ -49,7 +49,6 @@ const emailInput = document.querySelector('.comment-section input[type="email"]'
 const messageInput = document.querySelector('.comment-section textarea');
 
 contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
     let isValid = true;
 
     // Name Validation
@@ -71,12 +70,16 @@ contactForm.addEventListener('submit', (e) => {
         isValid = false;
     }
 
-    // Submit Form if Valid
-    if (isValid) {
-        alert('Thank you! Your message has been sent.');
-        contactForm.reset();
+    // Agar validation fail hoti hai, to submission rok dein
+    if (!isValid) {
+        e.preventDefault(); // Sirf invalid case mein rokna
+    } else {
+        // Valid hone pe form submit ho jayega Getform pe
+        alert('Thank you! Your message is being sent.');
+        // `e.preventDefault()` hata diya, to form naturally submit hoga
     }
 });
+
 // Real-Time Clock
 const clock = document.getElementById('clock');
 
